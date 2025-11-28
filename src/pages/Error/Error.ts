@@ -43,3 +43,4 @@ export function renderErrorPage(path: string) {
     app.textContent = '';
     app.appendChild(domFragment);
 };
+

@@ -22,3 +22,4 @@ export function renderSignInPage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
+

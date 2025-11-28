@@ -3,7 +3,10 @@ import templateSource from './Error.hbs?raw';
 import type { ErrorData } from '../../type/error.type.ts';
 
 const templateSpecString = Handlebars.precompile(templateSource);
-const template = Handlebars.template(eval('(' + templateSpecString + ')'));
+
+const templateFunction = new Function(`return ${templateSpecString};`)();
+
+const template = Handlebars.template(templateFunction);
 
 function getErrorData(path: string): ErrorData {
     if (path === '/500') {

@@ -1,0 +1,80 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__container {
+    padding: 50px 30px 30px;
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+  }
+
+  &__button {
+    width: 100%;
+    height: 37px;
+    background: #3369F3;
+    margin-bottom: 14px;
+    border: none;
+    color: #FFFFFF;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1a1a;
+  }
+
+  &__block-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 40px 0 154px;
+    gap: 16px;
+  }
+
+  &__block-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 8px;
+    color: #999999;
+    text-align: start;
+  }
+
+  &__input {
+    background: white;
+    border: none;
+    color: #1E1E1E;
+    border-bottom: 1px solid #3369F3;
+  }
+
+  &__input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #3369F3;
+  }
+
+  &__link {
+    text-align: center;
+    color: #3369F3;
+    text-decoration: none;
+  }
+
+  &__font {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+  }
+}

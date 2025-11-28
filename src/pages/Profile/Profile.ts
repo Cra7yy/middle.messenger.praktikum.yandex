@@ -22,4 +22,3 @@ export function renderProfilePage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
-

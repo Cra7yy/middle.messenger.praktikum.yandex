@@ -22,4 +22,3 @@ export function renderChatPage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
-

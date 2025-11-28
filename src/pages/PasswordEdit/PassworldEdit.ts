@@ -22,4 +22,3 @@ export function renderPasswordEditPage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
-

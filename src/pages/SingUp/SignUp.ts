@@ -22,4 +22,3 @@ export function renderSignUpPage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
-

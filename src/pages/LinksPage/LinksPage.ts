@@ -22,4 +22,3 @@ export function renderLinksPage() {
     app.textContent = '';
     app.appendChild(domFragment);
 };
-

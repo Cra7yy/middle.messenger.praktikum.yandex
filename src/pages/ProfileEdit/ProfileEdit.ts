@@ -11,7 +11,7 @@ function createDOMFromHTML(htmlString: string): DocumentFragment {
     }
 
     return fragment;
-}
+};
 
 export function renderProfileEditPage() {
     const app = document.getElementById('app');

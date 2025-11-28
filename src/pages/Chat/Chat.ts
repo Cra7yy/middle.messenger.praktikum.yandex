@@ -11,7 +11,7 @@ function createDOMFromHTML(htmlString: string): DocumentFragment {
     }
 
     return fragment;
-}
+};
 
 export function renderChatPage() {
     const app = document.getElementById('app');
@@ -21,4 +21,4 @@ export function renderChatPage() {
 
     app.textContent = '';
     app.appendChild(domFragment);
-}
+};

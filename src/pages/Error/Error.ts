@@ -16,7 +16,7 @@ function getErrorData(path: string): ErrorData {
         code: '404',
         title: 'Не туда попали'
     };
-}
+};
 
 function createDOMFromHTML(htmlString: string): DocumentFragment {
     const parser = new DOMParser();
@@ -28,7 +28,7 @@ function createDOMFromHTML(htmlString: string): DocumentFragment {
     }
 
     return fragment;
-}
+};
 
 export function renderErrorPage(path: string) {
     const app = document.getElementById('app');
@@ -39,4 +39,4 @@ export function renderErrorPage(path: string) {
     const domFragment = createDOMFromHTML(html);
     app.textContent = '';
     app.appendChild(domFragment);
-}
+};

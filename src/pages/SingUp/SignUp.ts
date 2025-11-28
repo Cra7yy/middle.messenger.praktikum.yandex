@@ -11,7 +11,7 @@ function createDOMFromHTML(htmlString: string): DocumentFragment {
     }
 
     return fragment;
-}
+};
 
 export function renderSignUpPage() {
     const app = document.getElementById('app');
@@ -21,4 +21,4 @@ export function renderSignUpPage() {
 
     app.textContent = '';
     app.appendChild(domFragment);
-}
+};

@@ -21,4 +21,4 @@ export function renderProfileEditPage() {
 
     app.textContent = '';
     app.appendChild(domFragment);
-}
+};

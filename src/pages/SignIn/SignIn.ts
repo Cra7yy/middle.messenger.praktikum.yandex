@@ -11,7 +11,7 @@ function createDOMFromHTML(htmlString: string): DocumentFragment {
     }
 
     return fragment;
-}
+};
 
 export function renderSignInPage() {
     const app = document.getElementById('app');
@@ -21,4 +21,4 @@ export function renderSignInPage() {
 
     app.textContent = '';
     app.appendChild(domFragment);
-}
+};

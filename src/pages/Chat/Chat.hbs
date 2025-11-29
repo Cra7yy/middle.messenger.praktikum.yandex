@@ -1,28 +1,34 @@
-<div class="chat">
+<main class="chat">
     <div class="chat__left-block">
-        <a class="chat__link" href="/profile">
-            <p class="chat__link-text">Профиль</p>
-            <img class="chat__link-img" src="/arrow.svg">
-        </a>
-        <input class="chat__search-input chat__link-text" type="search" placeholder="Поиск"/>
+        <nav>
+            <a class="chat__link" href="/profile">
+                <p class="chat__link-text">Профиль</p>
+                <img class="chat__link-img" src="/arrow.svg">
+            </a>
+        </nav>
+        <form>
+            <input class="chat__search-input chat__link-text" type="search" placeholder="Поиск"/>
+        </form>
         <div class="chat__line"></div>
-        <ul class="chat__block-chats">
-            <li class="chat__block-chat">
-                <div style="display: flex">
-                    <div class="chat__avatar"></div>
-                    <div class="chat__user-info">
-                        <h4 class="chat__user-name">Андрей</h4>
-                        <p class="chat__user-message">Изображение</p>
+        <nav>
+            <ul class="chat__block-chats">
+                <li class="chat__block-chat">
+                    <div style="display: flex">
+                        <div class="chat__avatar"></div>
+                        <div class="chat__user-info">
+                            <h4 class="chat__user-name">Андрей</h4>
+                            <p class="chat__user-message">Изображение</p>
+                        </div>
                     </div>
-                </div>
-                <div class="chat__message-info">
-                    <p class="chat__message-time">10:49</p>
-                    <div class="chat__block-unread-massages">
-                        <p class="chat__unread-massages">2</p>
+                    <div class="chat__message-info">
+                        <p class="chat__message-time">10:49</p>
+                        <div class="chat__block-unread-massages">
+                            <p class="chat__unread-massages">2</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </nav>
     </div>
     <div class="chat__block-message">
         <div class="chat__block-message-header">
@@ -61,12 +67,12 @@
                 </div>
             </div>
         </div>
-        <div class="chat__block-send-message">
+        <form class="chat__block-send-message">
             <img class="chat__send-message-clip" src="/clip.svg"/>
             <input class="chat__send-message-input" type="text" placeholder="Сообщение"/>
-            <button class="chat__send-message-button">
+            <button type="submit" class="chat__send-message-button">
                 <img class="chat__send-message-arrow" src="/arrow_right.svg"/>
             </button>
-        </div>
+        </form>
     </div>
-</div>
+</main>

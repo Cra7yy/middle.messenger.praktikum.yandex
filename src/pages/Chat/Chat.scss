@@ -1,4 +1,7 @@
+@use '../../styles/colors' as *;
+
 .chat {
+  @include color-variables;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -6,13 +9,13 @@
   box-sizing: border-box;
 
   &__left-block {
-    background: #FBFBFB;
+    background: var(--background-secondary);
   }
 
   &__link {
     height: 56px;
     text-decoration: none;
-    color: #999999;
+    color: var(--text-color-secondary);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -33,7 +36,7 @@
     height: 32px;
     border-radius: 5px;
     text-align: center;
-    background: #EFEFEF;
+    background: var(--background-light-gray);
     border: none;
 
     &:hover {
@@ -43,7 +46,7 @@
 
   &__line {
     width: 290px;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid var(--border-color-light);
     margin: 14px 0 0;
     display: flex;
     justify-self: center;
@@ -70,7 +73,7 @@
       right: 10px;
       bottom: 0;
       height: 1px;
-      background-color: #EAEAEA;
+      background-color: var(--border-color-light);
       width: calc(100% - 20px);
     }
   }
@@ -79,7 +82,7 @@
     width: 47px;
     height: 47px;
     border-radius: 50%;
-    background: #EFEFEF;
+    background: var(--background-light-gray);
   }
 
   &__user-info {
@@ -100,7 +103,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
-    color: #999999;
+    color: var(--text-color-secondary);
   }
 
   &__message-info {
@@ -114,14 +117,14 @@
     font-weight: 500;
     font-size: 9px;
     line-height: 13px;
-    color: #999999;
+    color: var(--text-color-secondary);
   }
 
   &__block-unread-massages {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #3369F3;
+    background: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,7 +134,7 @@
     font-weight: 500;
     font-size: 11px;
     line-height: 12px;
-    color: #FFFFFF;
+    color: var(--text-color-inverted);
   }
 
   &__block-message {
@@ -154,7 +157,7 @@
       right: 20px;
       bottom: 0;
       height: 1px;
-      background-color: #EAEAEA;
+      background-color: var(--border-color-light);
       width: calc(100% - 40px);
     }
   }
@@ -180,7 +183,7 @@
 
   &__content-date {
     text-align: center;
-    color: #999999;
+    color: var(--text-color-secondary);
     margin-bottom: 20px;
   }
 
@@ -195,7 +198,7 @@
   &__content-message {
     padding: 11px;
     width: 402px;
-    background: #F8F8F8;
+    background: var(--background-light);
     border-radius: 10px;
   }
 
@@ -204,7 +207,7 @@
   }
 
   &__content-message-time {
-    color: #999999;
+    color: var(--text-color-secondary);
     float: right;
     margin-top: 5px;
   }
@@ -217,7 +220,7 @@
 
   &__block-message-image {
     width: 316px;
-    border: 1px solid #EFEFEF;
+    border: 1px solid var(--background-light-gray);
     border-radius: 12px;
     position: relative;
     overflow: hidden;
@@ -236,8 +239,8 @@
     font-size: 9px;
     line-height: 9px;
     font-weight: 500;
-    color: #FFFFFF;
-    background-color: #52525280;
+    color: var(--text-color-inverted);
+    background-color: var(--background-image-time-overlay);
     padding: 2px 4px;
     border-radius: 30px;
     white-space: nowrap;
@@ -253,7 +256,7 @@
 
   &__content-user-message {
     max-width: 402px;
-    background: #E4EDFD;
+    background: var(--background-message-own);
     padding: 11px;
     border-radius: 10px 10px 0 10px;
     display: flex;
@@ -285,7 +288,7 @@
       right: 20px;
       top: 0;
       height: 1px;
-      background-color: #EAEAEA;
+      background-color: var(--border-color-light);
       width: calc(100% - 40px);
     }
   }
@@ -297,7 +300,7 @@
     border: none;
     border-radius: 30px;
     width: 100%;
-    background: #EFEFEF;
+    background: var(--background-light-gray);
     padding: 10px 20px;
     margin: 0 10px;
   }
@@ -306,7 +309,7 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #3369F3;
+    background: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;

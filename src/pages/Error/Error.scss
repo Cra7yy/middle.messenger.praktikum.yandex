@@ -1,4 +1,7 @@
+@use '../../styles/colors' as *;
+
 .error-page {
+  @include color-variables;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +39,7 @@
   }
 
   &__button {
-    color: #3369F3;
+    color: var(--primary-color);
     font-size: 11px;
     cursor: pointer;
     text-decoration: none;

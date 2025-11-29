@@ -1,4 +1,7 @@
+@use '../../styles/colors' as *;
+
 .profile {
+  @include color-variables;
   margin-top: 60px;
 
   &__block-back {
@@ -8,7 +11,7 @@
     top: 0;
     width: 64px;
     height: 100vh;
-    background: #FBFBFB;
+    background: var(--background-secondary);
     justify-content: center;
     align-items: center;
     z-index: 100;
@@ -24,7 +27,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background: #3369F3;
+    background: var(--primary-color);
   }
 
   &__block-back__img {
@@ -42,7 +45,7 @@
     width: 140px;
     height: 130px;
     border-radius: 50%;
-    background: #EFEFEF;
+    background: var(--background-light-gray);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,13 +57,13 @@
   &__avatar:hover {
     opacity: 0.5;
     cursor: pointer;
-    background: #000000;
+    background: var(--background-overlay-dark);
   }
 
   &__avatar-image {
     width: 40px;
     height: 40px;
-    color: #CDCDCD;
+    color: var(--icon-color-light-gray);
     transition: opacity 0.3s ease;
   }
 
@@ -77,7 +80,7 @@
     font-size: 13px;
     line-height: 14px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: var(--text-color-inverted);
     text-align: center;
     pointer-events: none;
   }
@@ -91,7 +94,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 16px;
-    color: #1E1E1E;
+    color: var(--text-color-primary);
   }
 
   &__blocks-info {
@@ -105,7 +108,7 @@
   &__block-info {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid var(--border-color-light);
     padding-bottom: 10px;
   }
 
@@ -114,11 +117,11 @@
   }
 
   &__heading-info {
-    color: #1E1E1E;
+    color: var(--text-color-primary);
   }
 
   &__info {
-    color: #999999;
+    color: var(--text-color-secondary);
   }
 
   &__settings {
@@ -130,15 +133,15 @@
 
   &__settings-item {
     width: 100%;
-    color: #3369F3;
-    border-bottom: 1px solid #EAEAEA;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color-light);
     padding-bottom: 10px;
     text-align: start;
     cursor: pointer;
   }
 
   &__link {
-    color: #FF0000;
+    color: var(--danger-color);
     text-decoration: none;
     text-align: start;
   }

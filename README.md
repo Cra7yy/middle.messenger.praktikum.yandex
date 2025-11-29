@@ -44,6 +44,7 @@ npm run build
   /pages              # Страницы приложения
   /main.ts            # Точка входа в приложение
   /type               # Типы TypeScript
+  /styles             # Глобальные стили
 .eslint.config.ts     # Конфигурация ESLint
 package.json          # Скрипты и зависимости
 ```

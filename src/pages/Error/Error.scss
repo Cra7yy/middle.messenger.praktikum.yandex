@@ -1,0 +1,47 @@
+@use '../../styles/colors' as *;
+
+.error-page {
+  @include color-variables;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  &__container {
+    width: auto;
+    max-width: 720px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__code {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 40px;
+  }
+
+  &__title {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 69px;
+  }
+
+  &__button {
+    color: var(--primary-color);
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}

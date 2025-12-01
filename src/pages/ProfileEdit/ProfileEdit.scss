@@ -1,0 +1,142 @@
+@use '../../styles/colors' as *;
+
+.profile-edit {
+  @include color-variables;
+  width: 100%;
+  margin-top: 60px;
+
+  &__block-back {
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 64px;
+    height: 100vh;
+    background: var(--background-secondary);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+
+  &__block-back__button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--primary-color);
+  }
+
+  &__block-back__img {
+    width: 16px;
+    height: 16px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 140px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--background-light-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    opacity: 1;
+    transition: background 0.3s ease, opacity 0.3s ease;
+  }
+
+  &__avatar:hover {
+    opacity: 0.5;
+    cursor: pointer;
+    background: var(--background-overlay-dark);
+  }
+
+  &__avatar-image {
+    width: 40px;
+    height: 40px;
+    color: var(--icon-color-light-gray);
+    transition: opacity 0.3s ease;
+  }
+
+  &__avatar:hover &__avatar-image {
+    opacity: 0.2;
+  }
+
+  &__avatar-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: 500;
+    color: var(--text-color-inverted);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  &__avatar:hover &__avatar-text {
+    display: block;
+  }
+
+  &__blocks-info {
+    width: 510px;
+    margin: 97px 0 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__block-info {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 10px;
+  }
+
+  &__block-info:last-child {
+    border-bottom: none;
+  }
+
+  &__heading-info {
+    color: var(--text-color-primary);
+  }
+
+  &__info-input {
+    color: var(--text-color-secondary);
+    border: none;
+    text-align: right;
+    background: var(--background-primary);
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__button {
+    width: 280px;
+    height: 37px;
+    background: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    color: var(--text-color-inverted);
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+}

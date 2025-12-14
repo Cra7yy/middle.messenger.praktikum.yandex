@@ -1,4 +1,4 @@
-import './style.css'
+import './style.scss'
 import './pages/Error/Error.scss';
 import { clientErrorPage, serverErrorPage } from './pages/Error/Error.ts';
 import { signInPage } from './pages/SignIn/SignIn.ts';

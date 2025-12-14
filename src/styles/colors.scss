@@ -1,23 +1,19 @@
 @mixin color-variables {
   --primary-color: #3369F3;
   --primary-color-hover: #007bff;
-  --danger-color: #FF0000;
-
+  --danger-color: #F00;
   --text-color-primary: #1E1E1E;
-  --text-color-secondary: #999999;
+  --text-color-secondary: #999;
   --text-color-title: #1a1a1a;
   --text-color-light: #333;
-  --text-color-inverted: #FFFFFF;
-
-  --background-primary: #FFFFFF;
+  --text-color-inverted: #FFF;
+  --background-primary: #FFF;
   --background-secondary: #FBFBFB;
   --background-light: #F8F8F8;
   --background-light-gray: #EFEFEF;
   --background-message-own: #E4EDFD;
-  --background-overlay-dark: #000000;
+  --background-overlay-dark: #000;
   --background-image-time-overlay: #52525280;
-
   --border-color-light: #EAEAEA;
-
   --icon-color-light-gray: #CDCDCD;
 }

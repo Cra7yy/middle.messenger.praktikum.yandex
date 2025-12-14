@@ -12,21 +12,7 @@
         <div class="chat__line"></div>
         <nav>
             <ul class="chat__block-chats">
-                <li class="chat__block-chat">
-                    <div style="display: flex">
-                        <div class="chat__avatar"></div>
-                        <div class="chat__user-info">
-                            <h4 class="chat__user-name">Андрей</h4>
-                            <p class="chat__user-message">Изображение</p>
-                        </div>
-                    </div>
-                    <div class="chat__message-info">
-                        <p class="chat__message-time">10:49</p>
-                        <div class="chat__block-unread-massages">
-                            <p class="chat__unread-massages">2</p>
-                        </div>
-                    </div>
-                </li>
+                {{{ ChatCard }}}
             </ul>
         </nav>
     </div>
@@ -39,37 +25,19 @@
             <img class="chat__block-message-header-menu" src="/menu.svg"/>
         </div>
         <div class="chat__content">
-            <p class="chat__content-date chat__link-text">19 июня</p>
+            {{{ Date }}}
             <div class="chat__block-chat-message">
-                <div class="chat__content-message">
-                    <p class="chat__content-message-text chat__user-message-text">Привет! Смотри, тут всплыл интересный
-                        кусок лунной космической истории — НАСА
-                        в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы
-                        все знаем что
-                        астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на
-                        поверхности Луны,
-                        так как астронавты с собой забрали только кассеты с пленкой.
-                        Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так
-                        никогда и не попали.
-                        Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
-                        <span class="chat__content-message-time chat__content-message-time-text">11:56</span></p>
-                </div>
-                <div class="chat__block-message-image">
-                    <img class="chat__content-message-image" src="/photo.png"/>
-                    <span class="chat__content-message-image-time chat__content-message-time-text">11:56</span>
-                </div>
+                {{{ ChatMessage }}}
+                {{{ MessageImage }}}
             </div>
             <div class="chat__block-user-message">
-                <div class="chat__content-user-message">
-                    <p class="chat__user-message-text">Круто!</p>
-                    <img class="chat__user-message-img" src="/doblu_check.svg"/>
-                    <span class="chat__content-message-time chat__content-message-time-text">11:56</span>
-                </div>
+                {{{ ChatUserMessage }}}
             </div>
         </div>
+        <span class="error">{{ error }}</span>
         <form class="chat__block-send-message">
             <img class="chat__send-message-clip" src="/clip.svg"/>
-            <input class="chat__send-message-input" type="text" placeholder="Сообщение"/>
+            <input class="chat__send-message-input" type="text" name="message" placeholder="Сообщение"/>
             <button type="submit" class="chat__send-message-button">
                 <img class="chat__send-message-arrow" src="/arrow_right.svg"/>
             </button>

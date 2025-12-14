@@ -34,6 +34,7 @@ npm run build
 - JavaScript (ES6+)
 - Vite
 - ESLint
+- Stylelint
 
 ## Структура проекта
 ```text
@@ -41,6 +42,8 @@ npm run build
 /node_modules         # Установленные зависимости
 /public               # Публичные файлы
 /src                  # Исходные файлы проекта
+  /components         # Компоненты приложения
+  /framework          # Мини-фреймворк для работы с компонентами
   /pages              # Страницы приложения
   /main.ts            # Точка входа в приложение
   /type               # Типы TypeScript

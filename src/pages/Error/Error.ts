@@ -1,45 +1,41 @@
-import Handlebars from 'handlebars';
-import templateSource from './Error.hbs?raw';
-import type { ErrorData } from '../../type/error.type.ts';
+import template from './Error.hbs?raw';
+import Block from '../../framework/Block.ts';
+import type { ErrorPage } from '../../type/page.type.ts';
+import { ComponentLink } from '../../components/ComponentLink/ComponentLink.ts';
 
-const templateSpecString = Handlebars.precompile(templateSource);
+class ClientErrorPage extends Block {
+  constructor(props: ErrorPage) {
+    super('main', props);
+  }
 
-const templateFunction = new Function(`return ${templateSpecString};`)();
+  render() {
+    return this.compile(template, this.props);
+  }
+}
 
-const template = Handlebars.template(templateFunction);
+class ServerErrorPage extends Block {
+  constructor(props: ErrorPage) {
+    super('main', props);
+  }
 
-function getErrorData(path: string): ErrorData {
-    if (path === '/500') {
-        return {
-            code: '500',
-            title: 'Мы уже фиксим'
-        };
-    }
-    return {
-        code: '404',
-        title: 'Не туда попали'
-    };
-};
+  render() {
+    return this.compile(template, this.props);
+  }
+}
 
-function createDOMFromHTML(htmlString: string): DocumentFragment {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, 'text/html');
-    const fragment = document.createDocumentFragment();
-
-    while (doc.body.firstChild) {
-        fragment.appendChild(doc.body.firstChild);
-    }
-
-    return fragment;
-};
-
-export function renderErrorPage(path: string) {
-    const app = document.getElementById('app');
-    if (!app) return;
-
-    const data = getErrorData(path);
-    const html = template(data);
-    const domFragment = createDOMFromHTML(html);
-    app.textContent = '';
-    app.appendChild(domFragment);
-};
+export const clientErrorPage = new ClientErrorPage({
+  code: '404',
+  title: 'Не туда попали',
+  Link: new ComponentLink({
+    url: '/chat',
+    text: 'Назад к чатам'
+  })
+});
+export const serverErrorPage = new ServerErrorPage({
+  code: '500',
+  title: 'Мы уже фиксим',
+  Link: new ComponentLink({
+    url: '/chat',
+    text: 'Назад к чатам'
+  })
+});

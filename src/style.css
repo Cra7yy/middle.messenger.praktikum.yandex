@@ -1,6 +1,6 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #FFFFFF;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    background-color: #FFF;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, a, input {
@@ -12,18 +12,33 @@ h1, h2, h3, h4, h5, h6, p, span, a, input {
 }
 
 body {
-  margin: 0;
+    margin: 0;
     padding: 0;
-  height: 100%;
-  display: flex;
-  place-items: center;
+    height: 100%;
+    display: flex;
+    place-items: center;
 }
 
 #app {
-  margin: 0 auto;
-  text-align: center;
+    margin: 0 auto;
+    text-align: center;
 }
 
 button {
-  border-radius: 8px;
+    border-radius: 8px;
+}
+
+.error {
+    color: #FF2F2F;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 8px;
+    text-align: start;
+    padding-top: 7px;
+}
+
+.error-profile {
+    text-align: end;
+    display: block;
+    width: 100%;
 }

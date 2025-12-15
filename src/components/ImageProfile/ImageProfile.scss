@@ -1,0 +1,47 @@
+.image-profile {
+  width: 140px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--background-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  opacity: 1;
+  transition: background 0.3s ease, opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+    background: var(--background-overlay-dark);
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    color: var(--icon-color-light-gray);
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover &__avatar {
+    opacity: 0.2;
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    font-size: 13px;
+    line-height: 14px;
+    font-weight: 500;
+    color: var(--text-color-inverted);
+    text-align: center;
+    pointer-events: none;
+  }
+
+  &:hover &__text {
+    display: block;
+  }
+}

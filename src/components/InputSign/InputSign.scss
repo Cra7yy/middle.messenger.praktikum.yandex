@@ -1,0 +1,30 @@
+.input-sign {
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    padding: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+    margin-bottom: 8px;
+    color: var(--text-color-secondary);
+    text-align: start;
+  }
+
+  &__input {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+    background: var(--background-primary);
+    border: none;
+    color: var(--text-color-primary);
+    border-bottom: 1px solid var(--primary-color);
+
+    &:focus {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid var(--primary-color);
+    }
+  }
+}

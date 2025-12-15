@@ -1,0 +1,30 @@
+.button-profile {
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: 100vh;
+  background: var(--background-secondary);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  &__btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--primary-color);
+  }
+
+  &__img {
+    width: 16px;
+    height: 16px;
+  }
+}

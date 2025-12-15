@@ -2,6 +2,7 @@
 
 .error-page {
   @include color-variables;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,12 +37,5 @@
     display: flex;
     justify-content: center;
     margin-top: 69px;
-  }
-
-  &__button {
-    color: var(--primary-color);
-    font-size: 11px;
-    cursor: pointer;
-    text-decoration: none;
   }
 }

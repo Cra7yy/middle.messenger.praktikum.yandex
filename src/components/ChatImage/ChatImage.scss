@@ -1,0 +1,27 @@
+.chat-image {
+  width: 316px;
+  border: 1px solid var(--background-light-gray);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 11px;
+    right: 11px;
+    color: var(--text-color-inverted);
+    background-color: var(--background-image-time-overlay);
+    padding: 2px 4px;
+    border-radius: 30px;
+    white-space: nowrap;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 9px;
+  }
+}

@@ -1,44 +1,42 @@
 import './style.scss'
-import './pages/Error/Error.scss';
-import { clientErrorPage, serverErrorPage } from './pages/Error/Error.ts';
-import { signInPage } from './pages/SignIn/SignIn.ts';
-import { signUpPage } from './pages/SingUp/SignUp.ts';
-import { profilePage } from './pages/Profile/Profile.ts';
-import { profileEditPage } from './pages/ProfileEdit/ProfileEdit.ts';
-import { passwordEditPage } from './pages/PasswordEdit/PassworldEdit.ts';
-import { chatPage } from './pages/Chat/Chat.ts';
-import { LinksPage } from './pages/LinksPage/LinksPage.ts';
-import Block from './framework/Block.ts';
+import { SignInPage } from './pages/SignIn/SignIn.ts';
+import { SignUpPage } from './pages/SingUp/SignUp.ts';
+import { ProfilePage } from './pages/Profile/Profile.ts';
+import { ProfileEditPage } from './pages/ProfileEdit/ProfileEdit.ts';
+import { PasswordEditPage } from './pages/PasswordEdit/PasswordEdit.ts';
+import { ChatPage } from './pages/Chat/Chat.ts';
+import { NotFoundPage } from './pages/Error/Error.ts';
+import { ROUTES } from './const/paths.ts';
+import Router from './utils/router.ts';
+import { UserApi } from './api/user.api.ts';
+import store from './store/store.ts';
 
-const path = window.location.pathname;
+document.addEventListener('DOMContentLoaded', async () => {
+  const router = new Router('#app');
+  const userApi = new UserApi();
 
-function renderDOM(block: Block) {
-  const root = document.querySelector('#app');
-  if (root) {
-    root.innerHTML = '';
-    const content = block.getContent();
-    if (content) {
-      root.appendChild(content);
-    }
+  try {
+    const response = await userApi.read();
+    const userData = JSON.parse(response.response);
+    store.set('user.data', userData);
+    router.setAuthorized(true);
+  } catch {
+    router.setAuthorized(false);
   }
-}
 
-if (path === '/500') {
-  renderDOM(serverErrorPage);
-} else if (path === '/signin') {
-  renderDOM(signInPage);
-} else if (path === '/signup') {
-  renderDOM(signUpPage);
-} else if (path === '/profile') {
-  renderDOM(profilePage);
-} else if (path === '/profile/edit') {
-  renderDOM(profileEditPage)
-} else if (path === '/password/edit') {
-  renderDOM(passwordEditPage);
-} else if (path === '/chat') {
-  renderDOM(chatPage);
-} else if (path === '/') {
-  renderDOM(new LinksPage());
-} else {
-  renderDOM(clientErrorPage);
-}
+  router
+    .use(ROUTES.LOGIN, SignInPage)
+    .use(ROUTES.REGISTER, SignUpPage)
+    .use(ROUTES.PROFILE, ProfilePage, true)
+    .use(ROUTES.SETTINGS, ProfileEditPage, true)
+    .use(ROUTES.PASSWORD_CHANGE, PasswordEditPage, true)
+    .use(ROUTES.CHAT, ChatPage, true)
+    .use(ROUTES.NOT_FOUND, NotFoundPage);
+
+  const knownRoutes = Object.values(ROUTES);
+  if (!knownRoutes.includes(window.location.pathname as ROUTES)) {
+    router.go(ROUTES.NOT_FOUND);
+  }
+
+  router.start();
+});

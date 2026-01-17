@@ -25,21 +25,29 @@ function queryStringify(data: Record<string, unknown>) {
   }, '?');
 }
 
+const API_URL = "https://ya-praktikum.tech/api/v2";
+
 export class HTTPTransport {
+  static API_URL = API_URL;
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
   get: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+    return this.request(this.endpoint + url, { ...options, method: METHODS.GET }, options.timeout);
   };
 
   post: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+    return this.request(this.endpoint + url, { ...options, method: METHODS.POST }, options.timeout);
   };
 
   put: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+    return this.request(this.endpoint + url, { ...options, method: METHODS.PUT }, options.timeout);
   };
 
   delete: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+    return this.request(this.endpoint + url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
   request = (url: string, options: Options = {}, timeout = 5000): Promise<XMLHttpRequest> => {
@@ -61,12 +69,22 @@ export class HTTPTransport {
           : url
       );
 
+      if (!(data instanceof FormData)) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
+      }
+
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
       });
 
+      xhr.withCredentials = true;
+
       xhr.onload = function () {
-        resolve(xhr);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr);
+        } else {
+          reject(xhr);
+        }
       };
 
       xhr.onabort = reject;
@@ -78,7 +96,8 @@ export class HTTPTransport {
       if (isGet || !data) {
         xhr.send();
       } else {
-        xhr.send(data as XMLHttpRequestBodyInit);
+        const body = data instanceof FormData ? data : JSON.stringify(data);
+        xhr.send(body as XMLHttpRequestBodyInit);
       }
     });
   };

@@ -20,19 +20,32 @@
         <div class="chat__block-message-header">
             <div class="chat__block-message-avatar">
                 <div class="chat__dimensions-avatar chat__avatar"></div>
-                <h4 class="chat__user-name">Андрей</h4>
+                <h4 class="chat__user-name">{{ chatName }}</h4>
             </div>
-            <img class="chat__block-message-header-menu" src="/menu.svg"/>
+            <button class="chat__block-message-button">
+                <img class="chat__block-message-header-menu" src="/menu.svg"/>
+            </button>
+            <div class="chat__modal-user">
+                <div class="chat__modal-file-item chat__action-create-chat">
+                    <div class="chat__plus-icon"></div>
+                    <p class="chat__modal-file-text">Создать чат</p>
+                </div>
+                <div class="chat__modal-file-item chat__action-delete-chat">
+                    <div class="chat__cross-icon"></div>
+                    <p class="chat__modal-file-text">Удалить чат</p>
+                </div>
+                <div class="chat__modal-file-item chat__action-add-user">
+                    <div class="chat__plus-icon"></div>
+                    <p class="chat__modal-file-text">Добавить пользователя</p>
+                </div>
+                <div class="chat__modal-file-item chat__action-delete-user">
+                    <div class="chat__cross-icon"></div>
+                    <p class="chat__modal-file-text">Удалить пользователя</p>
+                </div>
+            </div>
         </div>
         <div class="chat__content">
-            {{{ Date }}}
-            <div class="chat__block-chat-message">
-                {{{ ChatMessage }}}
-                {{{ MessageImage }}}
-            </div>
-            <div class="chat__block-user-message">
-                {{{ ChatUserMessage }}}
-            </div>
+            {{{ Messages }}}
         </div>
         <span class="error">{{ error }}</span>
         <form class="chat__block-send-message">
@@ -43,4 +56,5 @@
             </button>
         </form>
     </div>
+    {{{ Modal }}}
 </main>

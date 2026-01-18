@@ -1,4 +1,7 @@
 export interface Link {
   text: string;
-  url: string;
+  className?: string;
+  events?: {
+    click?: () => void;
+  };
 }

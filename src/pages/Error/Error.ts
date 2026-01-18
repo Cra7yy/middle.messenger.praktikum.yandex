@@ -1,41 +1,28 @@
 import template from './Error.hbs?raw';
+import './Error.scss';
 import Block from '../../framework/Block.ts';
-import type { ErrorPage } from '../../type/page.type.ts';
 import { ComponentLink } from '../../components/ComponentLink/ComponentLink.ts';
+import { ROUTES } from '../../const/paths.ts'
+import Router from '../../utils/router.ts'
 
-class ClientErrorPage extends Block {
-  constructor(props: ErrorPage) {
-    super('main', props);
+const router = new Router('#app');
+
+export class NotFoundPage extends Block {
+  constructor() {
+    super('main', {
+      code: '404',
+      title: 'Не туда попали',
+      Link: new ComponentLink({
+        text: 'Назад к чатам',
+        className: 'component-link',
+        events: { click: () => {
+          router.go(ROUTES.CHAT);
+        }
+      }})
+    });
   }
 
   render() {
     return this.compile(template, this.props);
   }
 }
-
-class ServerErrorPage extends Block {
-  constructor(props: ErrorPage) {
-    super('main', props);
-  }
-
-  render() {
-    return this.compile(template, this.props);
-  }
-}
-
-export const clientErrorPage = new ClientErrorPage({
-  code: '404',
-  title: 'Не туда попали',
-  Link: new ComponentLink({
-    url: '/chat',
-    text: 'Назад к чатам'
-  })
-});
-export const serverErrorPage = new ServerErrorPage({
-  code: '500',
-  title: 'Мы уже фиксим',
-  Link: new ComponentLink({
-    url: '/chat',
-    text: 'Назад к чатам'
-  })
-});

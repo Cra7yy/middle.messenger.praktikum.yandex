@@ -15,18 +15,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const router = new Router('#app');
   const userApi = new UserApi();
 
+  let isAuthorized = false;
+
   try {
     const response = await userApi.read();
     const userData = JSON.parse(response.response);
     store.set('user.data', userData);
-    router.setAuthorized(true);
+    isAuthorized = true;
   } catch {
-    router.setAuthorized(false);
+    isAuthorized = false;
   }
 
+  router.setAuthorized(isAuthorized);
+
   router
-    .use(ROUTES.LOGIN, SignInPage)
-    .use(ROUTES.REGISTER, SignUpPage)
+    .use(ROUTES.LOGIN, SignInPage, false, true)
+    .use(ROUTES.REGISTER, SignUpPage, false, true)
     .use(ROUTES.PROFILE, ProfilePage, true)
     .use(ROUTES.SETTINGS, ProfileEditPage, true)
     .use(ROUTES.PASSWORD_CHANGE, PasswordEditPage, true)
@@ -36,6 +40,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const knownRoutes = Object.values(ROUTES);
   if (!knownRoutes.includes(window.location.pathname as ROUTES)) {
     router.go(ROUTES.NOT_FOUND);
+  } else {
+    const currentRoute = router.getRoute(window.location.pathname);
+    if (currentRoute?.isProtected() && !isAuthorized) {
+      router.go(ROUTES.LOGIN);
+    } else if (currentRoute?.isPublicOnly() && isAuthorized) {
+      router.go(ROUTES.CHAT);
+    }
   }
 
   router.start();

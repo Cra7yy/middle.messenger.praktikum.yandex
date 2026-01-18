@@ -15,7 +15,8 @@ class UserController {
   async signIn(data: Record<string, unknown>) {
     try {
       await this.api.signIn(data);
-
+      await this.fetchUser();
+      router.setAuthorized(true);
       router.go(ROUTES.CHAT);
     } catch (e) {
       console.error(e);
@@ -26,6 +27,7 @@ class UserController {
     try {
       await this.api.signUp(data);
       await this.fetchUser();
+      router.setAuthorized(true);
       router.go(ROUTES.CHAT);
     } catch (e) {
       console.error(e);
@@ -44,10 +46,14 @@ class UserController {
   async logout() {
     try {
       await this.api.logout();
-
-      router.go(ROUTES.LOGIN);
-    } catch (e) {
-      console.error(e);
+      store.set('user.data', null);
+      store.set('chats.data', []);
+      store.set('messages.data', {});
+      store.set('selectedChat', null);
+      router.setAuthorized(false);
+      router.go('/');
+    } catch (error) {
+      console.error('Logout error:', error);
     }
   }
 

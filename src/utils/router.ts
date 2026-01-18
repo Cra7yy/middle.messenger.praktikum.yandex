@@ -37,19 +37,14 @@ class Route {
   private _block: Block | null = null;
   private _props: RouteProps;
   private _isProtected: boolean;
+  private _isPublicOnly: boolean;
 
-  constructor(pathname: string, view: typeof Block, props: RouteProps, isProtected: boolean = false) {
+  constructor(pathname: string, view: typeof Block, props: RouteProps, isProtected: boolean = false, isPublicOnly: boolean = false) {
     this._pathname = pathname;
     this._blockClass = view;
     this._props = props;
     this._isProtected = isProtected;
-  }
-
-  navigate(pathname: string): void {
-    if (this.match(pathname)) {
-      this._pathname = pathname;
-      this.render();
-    }
+    this._isPublicOnly = isPublicOnly;
   }
 
   leave(): void {
@@ -71,6 +66,10 @@ class Route {
   isProtected(): boolean {
     return this._isProtected;
   }
+
+  isPublicOnly(): boolean {
+    return this._isPublicOnly;
+  }
 }
 
 class Router {
@@ -91,19 +90,35 @@ class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: typeof Block, isProtected: boolean = false): Router {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery }, isProtected);
+  use(pathname: string, block: typeof Block, isProtected: boolean = false, isPublicOnly: boolean = false): Router {
+    const route = new Route(pathname, block, { rootQuery: this._rootQuery }, isProtected, isPublicOnly);
     this.routes.push(route);
     return this;
   }
 
   setAuthorized(isAuthorized: boolean): void {
     this._isAuthorized = isAuthorized;
+    if (!isAuthorized && this._currentRoute?.isProtected()) {
+      this.go('/');
+    }
   }
 
   start(): void {
     window.addEventListener('popstate', () => {
-      this._onRoute(window.location.pathname);
+      const pathname = window.location.pathname;
+      const route = this.getRoute(pathname);
+
+      if (route?.isProtected() && !this._isAuthorized) {
+        this.go('/');
+        return;
+      }
+
+      if (route?.isPublicOnly() && this._isAuthorized) {
+        this.go('/messenger');
+        return;
+      }
+
+      this._onRoute(pathname);
     });
 
     this._onRoute(window.location.pathname);
@@ -118,6 +133,11 @@ class Router {
 
     if (newRoute.isProtected() && !this._isAuthorized) {
       this.go('/');
+      return;
+    }
+
+    if (newRoute.isPublicOnly() && this._isAuthorized) {
+      this.go('/messenger');
       return;
     }
 

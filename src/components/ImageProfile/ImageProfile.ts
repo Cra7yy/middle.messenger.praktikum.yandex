@@ -5,7 +5,10 @@ import type { Image } from '../../type/image.type.ts';
 
 export class ImageProfile extends Block {
   constructor(props: Image) {
-    super('div', props);
+    super('div', {
+      ...props,
+      events: props.events
+    });
   }
 
   render() {

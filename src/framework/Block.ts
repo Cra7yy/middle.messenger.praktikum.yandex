@@ -18,7 +18,7 @@ export default class Block {
   private eventBus: () => EventBus;
   public props: Props;
   private _id: string = makeUUID();
-  public children: { [id: string]: Block } = {};
+  public children: { [id: string | number]: Block } = {};
 
   constructor(tagName: string = "div", propsAndChildren: object = {}) {
     const eventBus = new EventBus();
@@ -82,7 +82,7 @@ export default class Block {
 
   private _componentDidUpdate(oldProps: unknown, newProps: unknown): void {
     const shouldUpdate = this.componentDidUpdate(oldProps as Props, newProps as Props);
-    if (shouldUpdate === true) {
+    if (shouldUpdate) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
@@ -142,15 +142,26 @@ export default class Block {
     const propsAndStubs = { ...props };
 
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child._id}"></div>`
+      if (Array.isArray(child)) {
+        propsAndStubs[key] = child.map(c => `<div data-id="${c._id}"></div>`).join('');
+      } else {
+        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+      }
     });
 
     const fragment = document.createElement('template');
     fragment.innerHTML = Handlebars.compile(template)(propsAndStubs);
 
     Object.values(this.children).forEach(child => {
-      const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      stub?.replaceWith(child.getContent()!);
+      if (Array.isArray(child)) {
+        child.forEach(c => {
+          const stub = fragment.content.querySelector(`[data-id="${c._id}"]`);
+          stub?.replaceWith(c.getContent()!);
+        });
+      } else {
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        stub?.replaceWith(child.getContent()!);
+      }
     });
 
     return fragment.content;

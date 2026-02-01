@@ -7,7 +7,7 @@ export function merge(
   source: Indexed
 ): Indexed {
   for (const key in source) {
-    if (!source.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(source, key)) {
       continue;
     }
 

@@ -1,5 +1,5 @@
 const Patterns = {
-  name: /^[A-ZА-Я][a-zA-Zа-яА-Я\-]*$/,
+  name: /^[A-ZА-Я][a-zA-Zа-яА-Я-]*$/,
   login: /^(?!\d+$)[a-zA-Z0-9_-]{3,20}$/,
   email: /^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
   password: /^(?=.*[A-Z])(?=.*\d).{8,40}$/,

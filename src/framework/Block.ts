@@ -1,4 +1,4 @@
-import EventBus from './EventBus.ts'
+import EventBus from './EventBus';
 import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 
@@ -25,7 +25,6 @@ export default class Block {
     const { children, props } = this._getChildren(propsAndChildren);
 
     this._meta = { tagName, props };
-    this._id = makeUUID();
 
     this.children = children;
     this.props = this._makePropsProxy({ ...props, __id: this._id });
